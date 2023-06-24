@@ -1,20 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Post List</title>
-</head>
-<body>
+{% extends 'blog/base.html' %}
+
+{% block content %}
     <ul>
         {% for i in posts %}
+            <div class="d-flex justify-content-center">
+            <div class="card mt-3 w-50" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{ i.title }}</h5>
+    <p class="card-text">{{ i.text }}</p>
+      <p class="card-text">Created date: {{ i.created_date }}</p>
+    <a href="#" class="btn btn-primary">{{ i.author }}</a>
+  </div>
+            </div>
 
-            <li>
-            <h2>{{ i.title }}</h2>
-            <p>{{ i.text }}</p>
-            <p>Created date: {{ i.created_date }}</p>
-            </li>
+            </div>
 
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}
