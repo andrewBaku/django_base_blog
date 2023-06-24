@@ -5,18 +5,16 @@
     <title>Post List</title>
 </head>
 <body>
-    <h1>Django Girls a`la men's Blog.</h1>
-    <p>Hello, dear django-workers.</p>
     <ul>
-        <li>
-            First Post
-        </li>
-        <li>
-            Second Post
-        </li>
-        <li>
-            ...n.. Post
-        </li>
+        {% for i in posts %}
+
+            <li>
+            <h2>{{ i.title }}</h2>
+            <p>{{ i.text }}</p>
+            <p>Created date: {{ i.created_date }}</p>
+            </li>
+
+        {% endfor %}
     </ul>
 </body>
 </html>
