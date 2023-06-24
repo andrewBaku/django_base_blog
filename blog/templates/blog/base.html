@@ -14,8 +14,9 @@
   <div class="container-fluid">
     <a class="navbar-brand" href="{% url 'post_list' %}">GirlsDjangoBlog</a>
     <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Search</button>
+        {% if user.is_authenticated %}
+      <button class="btn btn-outline-success" type="submit"><a href="{% url 'create_new_post' %}">Create Post</a></button>
+        {% endif %}
     </form>
   </div>
             </nav>
