@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+    <div class="card text-center">
+  <div class="card-header">
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ post.title }}</h5>
+    <p class="card-text">{{ post.text }}</p>
+    <a href="#" class="btn btn-primary">Go to {{ post.author }} posts</a>
+  </div>
+  <div class="card-footer text-body-secondary">
+    Created {{ post.created_date }}
+  </div>
+</div>
+
+{% endblock %}

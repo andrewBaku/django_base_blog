@@ -7,9 +7,9 @@
             <div class="card mt-3 w-50" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">{{ i.title }}</h5>
-    <p class="card-text">{{ i.text }}</p>
+    <p class="card-text">{{ i.text|slice:"30" }}{% if i.text|length > 30 %}...{% endif %}</p>
       <p class="card-text">Created date: {{ i.created_date }}</p>
-    <a href="#" class="btn btn-primary">{{ i.author }}</a>
+    <a href="{% url 'post_detail' pk=i.pk %}" class="btn btn-primary">Go To Post</a>
   </div>
             </div>
 
