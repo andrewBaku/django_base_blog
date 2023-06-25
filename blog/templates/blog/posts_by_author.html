@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<h5 class="modal-title">{{ author.username }} posts</h5>
+    <ul>
+    {% for i in author_posts %}
+            <div class="d-flex justify-content-center">
+            <div class="card mt-3 w-50" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{ i.title }}</h5>
+    <p class="card-text">{{ i.text|slice:"50" }}{% if i.text|length > 50 %}...{% endif %}</p>
+      <p class="card-text">Created date: {{ i.created_date }}</p>
+    <a href="{% url 'post_detail' pk=i.pk %}" class="btn btn-primary">Go To Post</a>
+  </div>
+            </div>
+
+            </div>
+
+        {% endfor %}
+    </ul>
+
+{% endblock %}
