@@ -20,6 +20,10 @@ def get_posts_by_author(request, author):
     author_posts = Post.objects.filter(author=author_obj.id)
     return render(request, 'blog/posts_by_author.html', {'author': author_obj,'author_posts': author_posts})
 
+def post_draft_list(request):
+    posts = Post.objects.filter(published_date__isnull=True).order_by('created_date')
+    return render(request, 'blog/post_draft_list.html', {'posts': posts})
+
 @login_required
 def create_new_post(request):
     if request.method == 'POST':
@@ -27,7 +31,6 @@ def create_new_post(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            post.published_date = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
@@ -43,7 +46,6 @@ def post_edit(request, pk):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            post.published_date = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
@@ -55,3 +57,9 @@ def post_delete(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('/')
+
+@login_required
+def post_publish(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.publish()
+    return redirect('post_detail', pk=post.pk)
