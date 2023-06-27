@@ -15,7 +15,10 @@
     <a class="navbar-brand" href="{% url 'post_list' %}">GirlsDjangoBlog</a>
     <form class="d-flex" role="search">
         {% if user.is_authenticated %}
-            <p>Hello, {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+            <div class="badge bg-primary text-wrap" style="width: 6rem;">
+  Hello, {{ user.username }}
+</div>
+            <button class="btn btn-outline-success" type="submit"><a href="{% url 'logout' %}" class="m-1">Log out</a></button>
       <button class="btn btn-outline-success" type="submit"><a href="{% url 'create_new_post' %}">Create Post</a></button>
             <button class="btn btn-outline-success" type="submit"><a href="{% url 'post_draft_list' %}">Post Draft List</a></button>
         {% else %}
